@@ -68,9 +68,15 @@ towerguard/
 
 ---
 
-## Funding Target
+## Market
 
-Non-dilutive government funding via:
+TowerGuard serves two markets that reinforce each other.
+
+**Commercial (revenue first):** Any person or organization with a perimeter they can't watch continuously. Farms, ranches, construction sites, warehouses, distribution centers, office parks, commercial campuses. Fast sales cycle, no compliance overhead. This is where the first pilots come from.
+
+**Government / GovCon (scale + funding):** Military installations, critical infrastructure, border security, corrections. Slower to close, but non-dilutive funding and enterprise contract values. Commercial pilot data is what makes these conversations credible.
+
+### Non-Dilutive Funding Targets
 
 - **AFWERX** — Air Force innovation program
 - **SBIR** — Small Business Innovation Research
@@ -78,7 +84,7 @@ Non-dilutive government funding via:
 - **DIU** — Defense Innovation Unit
 - **Army xTech**
 
-Pitch framing: *Autonomous perimeter intelligence for persistent infrastructure security*
+Pitch framing: *Autonomous perimeter intelligence for persistent security — commercial-proven, government-ready*
 
 ---
 

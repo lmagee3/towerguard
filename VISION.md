@@ -35,13 +35,14 @@ The nest handles launch, recovery, charging, and fleet coordination autonomously
 ❌ A hardware product  
 ❌ A replacement for human judgment  
 ❌ Another drone-with-an-app solution  
+❌ A government-only product  
 
 ## What TowerGuard Is
 
 ✅ A **Perimeter Intelligence Platform**  
 ✅ Software that turns a cheap drone fleet into persistent infrastructure  
 ✅ A command-and-control layer that scales from one nest to fifty  
-✅ A fundable, defensible government technology play  
+✅ A dual-market product: civilian commercial revenue + government funding runway  
 
 ---
 
@@ -57,15 +58,32 @@ The nest handles launch, recovery, charging, and fleet coordination autonomously
 
 ---
 
-## Target Customers (Phase 1–2)
+## Target Customers
+
+### Commercial — Primary Revenue Path
+
+These buyers need persistent perimeter awareness today. No procurement paperwork, no compliance overhead. Shorter sales cycles, faster revenue.
+
+| Segment | Use Case |
+|---|---|
+| Rural / large property owners | Farms, ranches, estates — acres of terrain no camera grid covers |
+| Warehouses + distribution centers | Theft prevention, perimeter after-hours |
+| Construction sites | Equipment theft, vandalism, unauthorized access — active sites are high-value targets |
+| Office parks + commercial campuses | Replacement for human patrol guard on nights/weekends |
+| Private security firms | Productized offering for their existing client base |
+| Event venues + fairgrounds | Temporary deployment perimeter awareness |
+
+### Government / GovCon — Funding + Scale Path
+
+These buyers unlock non-dilutive capital and enterprise contract values. Slower to close but dramatically higher LTV. Commercial traction makes GovCon pitches credible — they want proof it works in the real world first.
 
 | Segment | Use Case |
 |---|---|
 | Military installations | FOB perimeter, airfield security |
 | Critical infrastructure | Power plants, water treatment, pipelines |
 | Border security | Remote terrain coverage, ROE support |
-| Private security firms | Industrial site protection |
 | Corrections | Prison perimeter monitoring |
+| DHS / federal law enforcement | Infrastructure protection, border activity |
 
 ---
 
