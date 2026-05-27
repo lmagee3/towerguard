@@ -270,25 +270,48 @@ WT-02 assumes patrol waypoints
 
 ### Layer 3 — Command Brain (TowerGuard Intelligence Layer)
 
-**Purpose:** Contextual understanding and operator support.
+**Purpose:** Contextual understanding, threat state management, and operator support.
 
 **Capabilities:**
-- Anomaly detection
+- Anomaly detection and confidence scoring
 - Behavioral analysis
-- Environmental awareness
-- Pattern recognition
+- Environmental awareness and terrain learning
+- Pattern recognition (normal vs. abnormal)
 - Operator recommendations
-- Event escalation
+- Threat state escalation/de-escalation
+- Adaptive sweep frequency management
+
+**Threat State Machine:**
+
+The Command Brain continuously manages the nest's operational posture across four states:
+
+```
+CLEAR → ELEVATED → ACTIVE → LOCKDOWN
+```
+
+State transitions are AI-driven. The brain escalates automatically when confidence thresholds are exceeded. De-escalation follows a sustained all-clear window. The operator can override any state at any time.
+
+**Patrol mode per state:**
+
+| Threat State | Patrol Mode | Drones Active |
+|---|---|---|
+| CLEAR | SWEEP (episodic, configurable interval) | 1 |
+| ELEVATED | PATROL (continuous waypoint loop) | 1–2 |
+| ACTIVE | OVERWATCH (Sentinel + Response) | 2 |
+| LOCKDOWN | Full deployment, manual control | All |
 
 **Event classification examples:**
 
-| Event | Classification | Action |
-|---|---|---|
-| Animal near perimeter | Normal | Log, no alert |
-| Unknown person pacing gate for 15 min | Suspicious | Track, escalate to operator |
-| Vehicle enters restricted area at 0200 | High priority | Launch secondary drone, notify operator, recommend manual review |
+| Event | Classification | State Transition | Action |
+|---|---|---|---|
+| Animal near perimeter | Normal | None | Log, tune false-positive model |
+| Unknown person pacing gate 15 min | Suspicious | CLEAR → ELEVATED | Increase sweep freq, track |
+| Vehicle enters restricted zone at 0200 | High priority | ELEVATED → ACTIVE | Dispatch response drone, push alert |
+| Confirmed breach + operator escalation | Critical | ACTIVE → LOCKDOWN | All assets, monitoring center notified |
 
-> Layer 3 **recommends**. It never acts unilaterally on high-priority events. The operator decides.
+> Layer 3 **recommends and escalates posture**. It never contacts authorities or initiates lockdown without human authorization.
+
+Full patrol behavior specification: [`docs/product/PATROL_DOCTRINE.md`](docs/product/PATROL_DOCTRINE.md)
 
 ---
 
@@ -296,15 +319,24 @@ WT-02 assumes patrol waypoints
 
 TowerGuard maintains human authorization for all critical actions.
 
-**Humans retain exclusive control over:**
-- Manual drone takeover
+**The AI drives posture. The human drives response.**
+
+The system autonomously manages:
+- Patrol mode transitions (SWEEP ↔ PATROL ↔ OVERWATCH)
+- Drone dispatch on anomaly detection
+- Sweep frequency adaptation
+- Incident report generation
+
+The human authorizes:
+- LOCKDOWN activation
 - Law enforcement contact
-- Response coordination
-- Escalation decisions
+- Third-party monitoring center notification
+- Manual drone takeover
+- Dismissal or confirmation of escalated events
 
 **TowerGuard assists. Humans decide.**
 
-This doctrine is non-negotiable — it is a product design constraint, a liability protection, and a funding narrative asset. Every SBIR/AFWERX/DHS reviewer will ask about autonomous decision-making. The answer is always: the system flags, the human acts.
+This doctrine is non-negotiable — it is a product design constraint, a liability protection, and a funding narrative asset. Every SBIR/AFWERX/DHS reviewer will ask about autonomous decision-making. The answer is always: the system manages posture, the human authorizes consequences.
 
 ---
 
