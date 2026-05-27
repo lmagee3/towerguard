@@ -2,15 +2,24 @@
 
 **Persistent Perimeter Awareness**
 
-TowerGuard is a multi-drone perimeter intelligence platform. An autonomous nest stores, charges, launches, recovers, and coordinates a fleet of 3–4 drones for continuous perimeter coverage — eliminating the downtime gap that single-drone systems cannot solve.
+TowerGuard is an AI-native perimeter intelligence platform built around a multi-drone autonomous nest designed for persistent perimeter awareness.
+
+TowerGuard combines:
+- Autonomous patrols
+- Drone rotation
+- Anomaly detection
+- Authorized operator takeover
+- Intelligent mission orchestration
+
+**Current Development Stage:** TowerGuard Sim — Technical Feasibility Phase
 
 ---
 
 ## What TowerGuard Is
 
-A **Perimeter Intelligence Platform** — not a drone product.
+An **AI-native Perimeter Intelligence Platform** — not a drone product.
 
-The drone fleet is the sensor layer. The platform is the product.
+The drone fleet is the sensor layer. The AI is the brain. The platform is the product.
 
 | Capability | Phase |
 |---|---|
