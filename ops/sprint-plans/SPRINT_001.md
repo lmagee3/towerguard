@@ -60,9 +60,16 @@
 
 ## Frontend Tasks (Codex)
 
+> **Design law:** Read [`docs/product/UX_DESIGN_LANGUAGE.md`](../../docs/product/UX_DESIGN_LANGUAGE.md) before writing a single component. Every frontend decision is downstream of that doc. The UI is threat-responsive — it changes posture with the threat state. CLEAR state is nearly empty. LOCKDOWN state is full information. That is not a stretch goal, that is the core product behavior.
+
+### Design Tokens (implement first)
+- [ ] `frontend/dashboard/src/styles/tokens.css` — CSS custom properties for full color system (`--bg-deep`, `--bg-surface`, `--border`, `--text-primary`, `--text-secondary`, threat accent tokens per state)
+- [ ] `frontend/dashboard/src/styles/typography.css` — Inter (sans) + JetBrains Mono imported and applied per role
+- [ ] Tailwind config extended with design token values
+
 ### Scaffold
 - [ ] Vite + React + TypeScript in `frontend/dashboard/`
-- [ ] Tailwind CSS
+- [ ] Tailwind CSS configured with design tokens
 - [ ] WebSocket client hook
 
 ### Components
