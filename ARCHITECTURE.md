@@ -189,3 +189,160 @@ WS   /alerts/live        — live alert feed
 | Simulation | Python asyncio event loop |
 | Deployment | Docker Compose (Phase 1) |
 | CI/CD | GitHub Actions |
+
+---
+
+## AI Architecture — Layered Autonomy
+
+TowerGuard uses a layered AI architecture designed for reliability, explainability, and operational safety.
+
+The system is **not** designed as a fully autonomous decision maker.
+
+> TowerGuard combines autonomous operation with human-on-the-loop oversight.
+
+```
+┌─────────────────────────────────────────────────────┐
+│              LAYER 3 — COMMAND BRAIN                 │
+│         TowerGuard Intelligence Layer                │
+│   anomaly detection · behavioral analysis ·          │
+│   pattern recognition · operator recommendations     │
+└──────────────────────┬──────────────────────────────┘
+                       │ scored events + recommendations
+┌──────────────────────▼──────────────────────────────┐
+│              LAYER 2 — MISSION BRAIN                 │
+│               Nest Coordination Layer                │
+│  patrol scheduling · drone rotation · battery mgmt  │
+│  route planning · dynamic reassignment              │
+└──────────────────────┬──────────────────────────────┘
+                       │ flight commands + state
+┌──────────────────────▼──────────────────────────────┐
+│              LAYER 1 — REFLEX BRAIN                  │
+│               Drone Edge Layer                       │
+│  obstacle avoidance · geofence · RTH · failover     │
+└─────────────────────────────────────────────────────┘
+```
+
+---
+
+### Layer 1 — Reflex Brain (Drone Edge Layer)
+
+**Purpose:** Immediate survival and flight safety.
+
+**Capabilities:**
+- Obstacle avoidance
+- Terrain following
+- Geofence enforcement
+- Safe altitude correction
+- Collision prevention
+- Return-to-home logic
+- Emergency failover
+
+**Key principle:** Fast reaction, no complex reasoning. This layer prioritizes flight safety and survivability above all else. It runs on the drone itself — the platform cannot override it.
+
+---
+
+### Layer 2 — Mission Brain (Nest Layer)
+
+**Purpose:** Mission execution and fleet coordination.
+
+**Capabilities:**
+- Patrol scheduling and route management
+- Drone rotation logic
+- Battery optimization
+- Dynamic reassignment
+- Redundancy management
+- Anomaly prioritization
+
+**Example — seamless handoff:**
+```
+WT-01 battery drops below 20%
+↓
+Mission Brain dispatches WT-02 before WT-01 begins RTN
+↓
+Zero coverage gap
+↓
+WT-01 docks, charging begins
+↓
+WT-02 assumes patrol waypoints
+```
+
+---
+
+### Layer 3 — Command Brain (TowerGuard Intelligence Layer)
+
+**Purpose:** Contextual understanding and operator support.
+
+**Capabilities:**
+- Anomaly detection
+- Behavioral analysis
+- Environmental awareness
+- Pattern recognition
+- Operator recommendations
+- Event escalation
+
+**Event classification examples:**
+
+| Event | Classification | Action |
+|---|---|---|
+| Animal near perimeter | Normal | Log, no alert |
+| Unknown person pacing gate for 15 min | Suspicious | Track, escalate to operator |
+| Vehicle enters restricted area at 0200 | High priority | Launch secondary drone, notify operator, recommend manual review |
+
+> Layer 3 **recommends**. It never acts unilaterally on high-priority events. The operator decides.
+
+---
+
+### Human-On-The-Loop Doctrine
+
+TowerGuard maintains human authorization for all critical actions.
+
+**Humans retain exclusive control over:**
+- Manual drone takeover
+- Law enforcement contact
+- Response coordination
+- Escalation decisions
+
+**TowerGuard assists. Humans decide.**
+
+This doctrine is non-negotiable — it is a product design constraint, a liability protection, and a funding narrative asset. Every SBIR/AFWERX/DHS reviewer will ask about autonomous decision-making. The answer is always: the system flags, the human acts.
+
+---
+
+### Phase 1 Implementation — Stub Architecture
+
+> **Critical build rule:** Do not build the AI brain in Phase 1. Build the **interfaces** for the future AI brain.
+
+The `backend/ai/` directory contains stub modules with defined interfaces. Each stub returns simulated outputs. The real models plug in later without touching the API surface.
+
+```
+backend/ai/
+├── anomaly_engine.py      # stub → returns scored anomaly events
+├── mission_reasoner.py    # stub → returns patrol/rotation decisions
+└── terrain_model.py       # stub → returns site learning data
+```
+
+This approach lets the dashboard, telemetry pipeline, and alert system all wire up to real interfaces today — and swap in real AI models in Phase 2 without architectural surgery.
+
+---
+
+### Long-Term Vision — Environmental Learning
+
+TowerGuard learns its deployment environment over time:
+
+**Terrain intelligence:**
+- Blind spots and dead zones
+- High-risk areas by incident history
+- Optimal patrol altitude by zone
+
+**Pattern baseline:**
+- Normal vehicle activity and delivery schedules
+- Regular personnel movement
+- Guard patrol timing
+
+**Threat indicators:**
+- Unusual timing or access patterns
+- Repeated perimeter probing
+- Abnormal loitering behavior
+- RF anomalies (Phase 2+)
+
+Goal: smarter patrols through environmental learning. The longer TowerGuard runs at a site, the better it knows what normal looks like — and the faster it catches what isn't.

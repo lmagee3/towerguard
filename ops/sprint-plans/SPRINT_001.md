@@ -33,6 +33,18 @@
 - [ ] Anomaly injection: random chance per tick (configurable)
 - [ ] `simulation/scenarios/perimeter-sweep-alpha.json` — standard 4-waypoint loop
 
+### AI Stubs (CRITICAL — build interfaces, not the brain)
+
+> Do NOT build real AI models in Sprint 001. Build stub modules with real interfaces that return simulated outputs. Phase 2 plugs in real models without changing the API surface.
+
+- [ ] `backend/ai/anomaly_engine.py` — stub interface, returns scored anomaly events
+- [ ] `backend/ai/mission_reasoner.py` — stub interface, returns patrol/rotation decisions
+- [ ] `backend/ai/terrain_model.py` — stub interface, returns site awareness data
+- [ ] Each stub must define the full function signature and return type that the real model will eventually satisfy
+- [ ] Stubs feed real telemetry pipeline and alert system — the rest of the platform should not know or care that they are stubs
+
+**Why:** Architecture hardens once Sonnet/Codex start building. If the AI interfaces aren't defined now, they'll get bolted on as afterthoughts. Defining them as stubs locks in the contract between the AI layer and the rest of the platform before it matters.
+
 ---
 
 ## Frontend Tasks (Codex)

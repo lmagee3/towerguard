@@ -25,89 +25,130 @@ TowerGuard operates with a defined division of authority between human and AI ag
 
 ---
 
-## Claude — Senior Technical Architect
+## Claude (Opus) — Product Architect / Technical PM
 
-**Deep technical reasoning, architecture review, and funding-grade documentation.**
+**Architecture, roadmap, sprint planning, product decisions, and technical arbitration. Does not push code.**
+
+Think: CTO + Product Strategist. The role that prevents spaghetti architecture and founder death.
 
 ### Owns
-- Architecture reviews and design refinement
+- System architecture and design decisions
+- Sprint planning and prioritization
 - Technical Feasibility Reviews (SBIR/AFWERX/DHS/DIU grade)
 - Failure mode analysis and security modeling
-- API design review
-- Technical documentation
-- Competitive landscape analysis
+- API design sign-off
+- Documentation and architecture records
+- Grant alignment and technical narrative
+- Systems coherence — making sure everything fits together
+
+### Does NOT Do
+- Push code to the repo
+- Make product decisions without Lawrence
+- Override Lawrence on funding, legal, or account decisions
 
 ### Immediate Priority
-Produce a Technical Feasibility Review covering:
-- Simulation architecture soundness
-- Hardware integration path viability
-- Failure modes and mitigations
-- Security model review
-- SBIR topic alignment assessment
+- Produce Technical Feasibility Review (docs/govcon/)
+- Maintain architecture coherence across all sprint output
+- Review every Codex/Sonnet PR before AntiGravity signs off
+
+---
+
+## Claude (Sonnet) — Primary Builder
+
+**Fast implementation. Owns `main`. Primary pusher to GitHub.**
+
+Think: Lead Engineer. Moves fast, keeps context across many files, handles the volume of implementation work.
+
+### Owns
+- Repo scaffolding and file structure execution
+- Frontend implementation (React/TypeScript components)
+- Backend wiring (routes, schemas, integration logic)
+- Feature implementation per Claude Opus specs
+- Primary commit + push to `main`
+- Context continuity across files and sessions
+
+### Does NOT Do
+- Make architectural decisions — escalates to Claude Opus
+- Merge without AntiGravity sign-off on critical paths
+- Override product decisions
 
 ---
 
 ## ChatGPT — Chief Strategy & Systems Architect
 
-**Turns concepts into executable product systems. Owns strategy and documentation.**
+**Turns concepts into executable product systems. Owns strategy documentation and sprint structure.**
 
 ### Owns
 - Product strategy and feature prioritization input
-- Architecture planning and sprint structure
+- Sprint structure and handoff documentation
 - Grant strategy and GovCon positioning
 - Competitive intelligence
-- Systems integration thinking
-- Workflow orchestration documentation
+- Cross-agent workflow orchestration
 
 ---
 
-## Codex — Lead Implementation Engineer
+## Codex — Senior Reviewer / Feature Builder
 
-**Execution engine. Builds what the architects design.**
+**Focused execution on specific, well-scoped modules. Reviews architecture. Does not own `main`.**
+
+Think: Senior IC brought in for the hard problems — not the scaffolding grind.
 
 ### Owns
-- Backend implementation (FastAPI scaffold, all endpoints)
-- Frontend scaffolding (React/TypeScript)
-- Simulation engine implementation
-- CI/CD pipeline
-- Repository structure execution
-- Infrastructure and DevOps
+- Specific backend module implementation (telemetry service, simulation engine, AI stubs)
+- Architecture review and optimization
+- Refactoring and performance work
+- Infrastructure and DevOps tasks
+
+### Does NOT Do
+- Push directly to `main` — submits PRs reviewed by Claude Opus + AntiGravity
+- Make architectural decisions — escalates to Claude Opus
+- Own the full repo — that's Sonnet's job
 
 ### Immediate Task
-Build the TowerGuard Sim API (Sprint 001 backend scope).
-
-Must deliver:
-- FastAPI scaffold with Docker Compose
-- Drone + Nest state models
-- Mission engine
-- Alert engine
-- Telemetry WebSocket endpoint
-- Manual takeover + RTN endpoints
-
-**Codex works from specs. Does not make architectural decisions. Escalates design questions to Claude or Lawrence.**
+Build TowerGuard Sim telemetry WebSocket service and simulation engine (Sprint 001 backend scope). Submit PR for review.
 
 ---
 
 ## AntiGravity — QA / Red Team / Systems Auditor
 
-**Independent review. Breaks assumptions before they reach production.**
+**Independent review. Breaks assumptions before they reach production. Never pushes to `main`.**
 
 ### Owns
-- Code quality review (all Codex commits before merge)
+- Code quality review (all commits before merge)
 - UX review (dashboard usability, operator workflow soundness)
-- Adversarial testing (what can be exploited?)
-- Safety assumption review (what causes mission failure?)
-- Reliability analysis (what breaks under load or edge conditions?)
+- Adversarial testing — what can be exploited?
+- Safety assumption review — what causes mission failure?
+- Reliability analysis — what breaks under load or edge conditions?
 - Liability surface identification
 
 ### Immediate Questions to Answer
 1. What fails first in the simulation engine under sustained load?
-2. What WebSocket failure modes can leave the operator with stale state?
+2. What WebSocket failure modes leave the operator with stale state?
 3. What operator actions could result in drone loss or collision?
 4. What authentication gaps exist in the Phase 1 API design?
-5. What does a determined adversary do to disrupt a TowerGuard deployment?
+5. What does a determined adversary do to a deployed TowerGuard nest — signal jamming, GPS spoofing, LTE outage, weather, physical tampering?
 
-**AntiGravity reviews only. Does not commit code. Reports findings to Claude for triage.**
+**AntiGravity reviews only. Reports findings to Claude Opus for triage and assignment.**
+
+---
+
+## Build Pipeline
+
+```
+Lawrence (vision + go/no-go)
+    ↓
+ChatGPT (strategy + sprint structure)
+    ↓
+Claude Opus (architecture + specs)
+    ↓
+Sonnet (primary build + main branch)
+    ↓
+Codex (focused modules + PRs)
+    ↓
+AntiGravity (break it)
+    ↓
+GitHub main
+```
 
 ---
 
@@ -115,12 +156,18 @@ Must deliver:
 
 | Decision Type | Owner |
 |---|---|
-| "What should we build?" | Lawrence + Claude |
-| "How should it be architected?" | Claude |
-| "Build it" | Codex |
-| "Is it correct?" | AntiGravity |
+| "What should we build?" | Lawrence + ChatGPT |
+| "How should it be architected?" | Claude Opus |
+| "Build it — primary" | Claude Sonnet |
+| "Build it — focused modules" | Codex (PR, not direct push) |
+| "Is it correct / safe?" | AntiGravity |
 | "Should we ship it?" | Lawrence |
 | Funding and legal | Lawrence only |
 | Credentials and accounts | Lawrence only |
 
-**Escalation protocol:** Codex hits a design question → escalate to Claude. AntiGravity flags a bug → Claude assesses severity → assigns fix to Codex. Claude has a product question → escalate to Lawrence.
+**Escalation protocol:**
+- Sonnet hits a design question → escalate to Claude Opus
+- Codex hits a design question → escalate to Claude Opus
+- AntiGravity flags a bug → Claude Opus assesses severity + assigns fix
+- Claude Opus has a product question → escalate to Lawrence
+- Anyone needs a credential or account action → Lawrence only
