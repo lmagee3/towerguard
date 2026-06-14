@@ -2,7 +2,7 @@
 
 ## Overview
 
-TowerGuard is structured as a platform with four primary layers:
+TowerGuard is a six-layer platform. The key architectural rule: **the AI reasons, PX4 flies.** No layer crosses that boundary.
 
 ```
 ┌─────────────────────────────────────────────────────┐
@@ -12,20 +12,39 @@ TowerGuard is structured as a platform with four primary layers:
                        │ WebSocket + REST
 ┌──────────────────────▼──────────────────────────────┐
 │                 PLATFORM LAYER                       │
-│     FastAPI Backend — Mission, Alert, Telemetry      │
+│   TowerGuard Command — Mission, Alert, Audit, Auth   │
 └──────┬────────────────┬──────────────────────────────┘
        │                │
 ┌──────▼──────┐  ┌──────▼──────────────────────────────┐
 │  AI ENGINE  │  │         SIMULATION ENGINE            │
-│  (anomaly,  │  │  (drone state, nest state, events)   │
-│   classify) │  └─────────────────────────────────────┘
-└─────────────┘
-       │
+│  Gemma/     │  │  (Phase 1 — replaces hardware layers │
+│  Ollama     │  │   below during sim)                  │
+│  YOLO/      │  └─────────────────────────────────────┘
+│  OpenCV     │
+└──────┬──────┘
+       │ high-level mission commands (not motor commands)
 ┌──────▼──────────────────────────────────────────────┐
-│                 INTEGRATION LAYER                    │
-│      DJI SDK / FlytBase / Camera APIs / Sensors      │
+│                 COMMAND BRIDGE LAYER                 │
+│            MAVLink / ROS2                            │
+│   Translates mission intent → flight controller cmds │
+└──────────────────────┬──────────────────────────────┘
+                       │ MAVLink protocol
+┌──────────────────────▼──────────────────────────────┐
+│              FLIGHT CONTROL LAYER (on-drone)         │
+│            PX4 / ArduPilot                           │
+│  Motors · stabilization · RTH · failsafes ·          │
+│  geofence · altitude hold · collision avoidance      │
+└──────────────────────┬──────────────────────────────┘
+                       │
+┌──────────────────────▼──────────────────────────────┐
+│                   SENSOR LAYER                       │
+│  GPS · IMU · barometer · cameras · RF · radar        │
 └─────────────────────────────────────────────────────┘
 ```
+
+**Phase 1 (current):** The simulation engine replaces the command bridge, flight control, and sensor layers entirely. Everything above the simulation layer is real code with real interfaces.
+
+Full AI brain spec: [`docs/architecture/LOCAL_AI_BRAIN.md`](docs/architecture/LOCAL_AI_BRAIN.md)
 
 ---
 
@@ -121,10 +140,29 @@ Runs during Phase 1 (no hardware). Generates realistic drone/nest state transiti
 
 Phase 2+. Real hardware connectivity.
 
+**Flight control (command bridge):**
+
 | Integration | Path | Notes |
 |---|---|---|
-| DJI SDK | `integrations/dji/` | Mobile SDK or MSDK v5 for direct drone control |
-| FlytBase | `integrations/flytbase/` | Enterprise drone-in-a-box platform API |
+| MAVLink | `integrations/mavlink/` | Primary command bridge — PX4 and ArduPilot both speak MAVLink |
+| ROS2 | `integrations/ros2/` | Optional middleware for multi-drone orchestration |
+| PX4 | `integrations/px4/` | Flight controller integration — SITL in Phase 2 testing |
+| ArduPilot | `integrations/ardupilot/` | Alternative FC — broader community, more vehicle types |
+
+**AI / vision:**
+
+| Integration | Path | Notes |
+|---|---|---|
+| Ollama | `backend/ai/` | Local Gemma inference — replaces stub in Phase 2 |
+| YOLO | `backend/ai/` | Object detection on camera frames |
+| OpenCV | `backend/ai/` | Motion detection, frame pre-processing |
+
+**Hardware / sensors:**
+
+| Integration | Path | Notes |
+|---|---|---|
+| DJI SDK | `integrations/dji/` | MSDK v5 — note NDAA restrictions for federal buyers |
+| FlytBase | `integrations/flytbase/` | Enterprise drone-in-a-box platform — evaluate as Phase 2 option |
 | Cameras | `integrations/cameras/` | RTSP stream ingestion, thermal camera APIs |
 | Sensors | `integrations/sensors/` | Radar, RF, acoustic sensor adapters |
 
