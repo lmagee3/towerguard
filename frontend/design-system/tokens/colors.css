@@ -1,0 +1,83 @@
+/* ───────────────────────────────────────────────────────────────────────────
+   TowerGuard — Color System
+   Dark mode only. No toggle. No gradients, no glow.
+   ONE threat accent is active at a time; it propagates across the whole UI via
+   the --tg-accent-* semantic aliases, which a [data-threat] scope re-points.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* ── Backgrounds — three depths ─────────────────────────────── */
+  --tg-bg-deep:        #080810; /* app canvas / void */
+  --tg-bg-surface:     #0F0F1A; /* panels, cards */
+  --tg-bg-elevated:    #161625; /* raised: modals, popovers, hovered rows */
+  --tg-bg-inset:       #050509; /* wells: feed frames, code, map */
+
+  /* ── Text — descending emphasis ─────────────────────────────── */
+  --tg-text-primary:   #E8E8F0; /* headings, primary copy, live values */
+  --tg-text-secondary: #6B6B8A; /* labels, captions, metadata */
+  --tg-text-muted:     #3A3A55; /* disabled, placeholder, faint scale ticks */
+
+  /* ── Borders / hairlines ────────────────────────────────────── */
+  --tg-border:         #1E1E32; /* default 1px hairline */
+  --tg-border-strong:  #2A2A45; /* hover / focused container edge */
+
+  /* ── Threat palette — raw values ────────────────────────────── */
+  --tg-clear:          #00D4B1; /* CLEAR    — teal     — nominal */
+  --tg-elevated:       #F5A623; /* ELEVATED — amber    — watch */
+  --tg-active:         #FF5733; /* ACTIVE   — orange   — engage */
+  --tg-lockdown:       #FF2020; /* LOCKDOWN — red      — full alert */
+
+  /* Tinted fills for badges / bars (flat, ~14% over surface) */
+  --tg-clear-fill:     rgba(0, 212, 177, 0.14);
+  --tg-elevated-fill:  rgba(245, 166, 35, 0.14);
+  --tg-active-fill:    rgba(255, 87, 51, 0.14);
+  --tg-lockdown-fill:  rgba(255, 32, 32, 0.16);
+
+  --tg-clear-line:     rgba(0, 212, 177, 0.30);
+  --tg-elevated-line:  rgba(245, 166, 35, 0.30);
+  --tg-active-line:    rgba(255, 87, 51, 0.32);
+  --tg-lockdown-line:  rgba(255, 32, 32, 0.34);
+
+  /* ── Drone / fleet status (operational, not threat) ─────────── */
+  --tg-status-patrol:  #00D4B1; /* airborne / patrolling */
+  --tg-status-ready:   #8FA0C0; /* standby on pad */
+  --tg-status-charge:  #F5A623; /* charging */
+  --tg-status-rtn:     #5FB0FF; /* returning to nest */
+  --tg-status-maint:   #6B6B8A; /* maintenance / offline */
+
+  /* ───────────────────────────────────────────────────────────────
+     SEMANTIC ACCENT — defaults to CLEAR (teal).
+     Override at any scope with [data-threat="elevated|active|lockdown"].
+     Components reference ONLY these, never the raw values, so a single
+     attribute flips the entire interface's accent.
+     ─────────────────────────────────────────────────────────────── */
+  --tg-accent:         var(--tg-clear);
+  --tg-accent-fill:    var(--tg-clear-fill);
+  --tg-accent-line:    var(--tg-clear-line);
+  --tg-accent-ink:     #050509; /* text on a solid accent fill */
+}
+
+[data-threat="clear"] {
+  --tg-accent: var(--tg-clear);
+  --tg-accent-fill: var(--tg-clear-fill);
+  --tg-accent-line: var(--tg-clear-line);
+  --tg-accent-ink: #050509;
+}
+[data-threat="elevated"] {
+  --tg-accent: var(--tg-elevated);
+  --tg-accent-fill: var(--tg-elevated-fill);
+  --tg-accent-line: var(--tg-elevated-line);
+  --tg-accent-ink: #050509;
+}
+[data-threat="active"] {
+  --tg-accent: var(--tg-active);
+  --tg-accent-fill: var(--tg-active-fill);
+  --tg-accent-line: var(--tg-active-line);
+  --tg-accent-ink: #050509;
+}
+[data-threat="lockdown"] {
+  --tg-accent: var(--tg-lockdown);
+  --tg-accent-fill: var(--tg-lockdown-fill);
+  --tg-accent-line: var(--tg-lockdown-line);
+  --tg-accent-ink: #FFFFFF;
+}

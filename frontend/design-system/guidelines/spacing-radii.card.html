@@ -1,0 +1,26 @@
+<!-- @dsCard group="Spacing" viewport="700x160" name="Radii" subtitle="Small + technical. Sharpness is brand. No giant rounding" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 24px; background: var(--tg-bg-surface); }
+  .row { display: flex; gap: 18px; }
+  .item { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .box { width: 76px; height: 76px; background: var(--tg-bg-elevated); border: 1px solid var(--tg-border-strong); }
+  .v { font-family: var(--tg-font-mono); font-size: 11px; color: var(--tg-text-secondary); }
+  .l { font-size: 10px; color: var(--tg-text-muted); }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="item"><div class="box" style="border-radius: 0"></div><span class="v">0</span><span class="l">none</span></div>
+    <div class="item"><div class="box" style="border-radius: 2px"></div><span class="v">2</span><span class="l">xs · bars</span></div>
+    <div class="item"><div class="box" style="border-radius: 4px"></div><span class="v">4</span><span class="l">sm · buttons</span></div>
+    <div class="item"><div class="box" style="border-radius: 6px"></div><span class="v">6</span><span class="l">md · cards</span></div>
+    <div class="item"><div class="box" style="border-radius: 8px"></div><span class="v">8</span><span class="l">lg · modals</span></div>
+    <div class="item"><div class="box" style="border-radius: 999px; width: 76px"></div><span class="v">pill</span><span class="l">dots</span></div>
+  </div>
+</body>
+</html>

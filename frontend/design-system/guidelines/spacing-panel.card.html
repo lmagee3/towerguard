@@ -1,0 +1,26 @@
+<!-- @dsCard group="Spacing" viewport="700x200" name="Panel & Depth" subtitle="No shadows — depth is layered backgrounds + 1px hairlines + 24px pad" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 24px; background: var(--tg-bg-deep); }
+  .panel { background: var(--tg-bg-surface); border: 1px solid var(--tg-border); border-radius: var(--tg-radius-md); padding: 24px; }
+  .panel-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+  .inner { background: var(--tg-bg-elevated); border: 1px solid var(--tg-border); border-radius: var(--tg-radius-sm); padding: 16px; }
+  .pad-note { font-family: var(--tg-font-mono); font-size: 10px; color: var(--tg-text-muted); }
+</style>
+</head>
+<body>
+  <div class="panel">
+    <div class="panel-head">
+      <span class="tg-label">Nest · Demo Test Range</span>
+      <span class="pad-note">pad 24 · radius 6 · border #1E1E32</span>
+    </div>
+    <div class="inner">
+      <span class="tg-mono" style="font-size: 13px; color: var(--tg-text-primary)">WT-01 · PATROLLING · 87%</span>
+    </div>
+  </div>
+</body>
+</html>

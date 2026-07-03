@@ -1,0 +1,38 @@
+<!-- @dsCard group="Colors" viewport="700x190" name="Threat Accents" subtitle="One accent active at a time — it shifts the whole UI with threat state" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 24px; background: var(--tg-bg-surface); }
+  .row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .sw { border: 1px solid var(--tg-border); border-radius: var(--tg-radius-md); overflow: hidden; }
+  .chip { height: 70px; }
+  .meta { padding: 12px 14px; background: var(--tg-bg-elevated); }
+  .state { font-family: var(--tg-font-mono); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; }
+  .desc { font-size: 11px; color: var(--tg-text-secondary); margin-top: 3px; }
+  .hex { font-family: var(--tg-font-mono); font-size: 10px; color: var(--tg-text-muted); margin-top: 4px; display: block; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="sw">
+      <div class="chip" style="background: var(--tg-clear)"></div>
+      <div class="meta"><span class="state" style="color: var(--tg-clear)">CLEAR</span><div class="desc">Nominal</div><span class="hex">#00D4B1</span></div>
+    </div>
+    <div class="sw">
+      <div class="chip" style="background: var(--tg-elevated)"></div>
+      <div class="meta"><span class="state" style="color: var(--tg-elevated)">ELEVATED</span><div class="desc">Watch</div><span class="hex">#F5A623</span></div>
+    </div>
+    <div class="sw">
+      <div class="chip" style="background: var(--tg-active)"></div>
+      <div class="meta"><span class="state" style="color: var(--tg-active)">ACTIVE</span><div class="desc">Engage</div><span class="hex">#FF5733</span></div>
+    </div>
+    <div class="sw">
+      <div class="chip" style="background: var(--tg-lockdown)"></div>
+      <div class="meta"><span class="state" style="color: var(--tg-lockdown)">LOCKDOWN</span><div class="desc">Full alert</div><span class="hex">#FF2020</span></div>
+    </div>
+  </div>
+</body>
+</html>

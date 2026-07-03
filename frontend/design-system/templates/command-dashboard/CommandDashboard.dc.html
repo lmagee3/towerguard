@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Command Dashboard" description="TowerGuard perimeter C2 — fleet, alerts, nest rotation. Flip the threat tweak to recolor the whole UI." -->
+<helmet>
+<script src="./ds-base.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+</helmet>
+<div data-threat="{{ threat }}" style="min-height:100vh;background:#080810;font-family:'Inter',system-ui,sans-serif;color:#E8E8F0;">
+
+  <header style="display:flex;align-items:center;justify-content:space-between;padding:18px 28px;border-bottom:1px solid #1E1E32;background:#0F0F1A;">
+    <div style="display:flex;align-items:center;gap:16px;">
+      <img src="../../assets/logos/towerguard-mark.png" alt="" style="width:38px;height:38px;">
+      <div>
+        <div style="font-size:18px;font-weight:700;letter-spacing:-0.01em;">TOWERGUARD</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#6B6B8A;letter-spacing:0.06em;">SITE · DEMO TEST RANGE</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:28px;">
+      <div style="text-align:right;">
+        <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#6B6B8A;white-space:nowrap;">NEST STATUS</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;color:var(--tg-accent);letter-spacing:0.04em;margin-top:2px;">{{ nestStatus }}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span style="width:8px;height:8px;border-radius:50%;background:#00D4B1;"></span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;color:#6B6B8A;">LINK OK</span>
+      </div>
+      <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 14px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;letter-spacing:0.08em;background:var(--tg-accent-fill);color:var(--tg-accent);border:1px solid var(--tg-accent-line);">
+        <span style="width:8px;height:8px;border-radius:50%;background:var(--tg-accent);"></span>{{ threatLabel }}
+      </span>
+    </div>
+  </header>
+
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 28px;border-bottom:1px solid #1E1E32;background:#0F0F1A;">
+    <div style="display:flex;align-items:center;gap:14px;">
+      <span style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#6B6B8A;">MISSION</span>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--tg-accent);letter-spacing:0.04em;">{{ mission }}</span>
+    </div>
+    <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;color:#6B6B8A;">4 UNITS · 1 NEST</span>
+  </div>
+
+  <div style="display:grid;grid-template-columns:2fr 1fr;gap:20px;padding:28px;align-items:start;">
+
+    <section style="background:#0F0F1A;border:1px solid #1E1E32;border-radius:6px;">
+      <header style="display:flex;align-items:center;justify-content:space-between;padding:16px 24px;border-bottom:1px solid #1E1E32;">
+        <span style="font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#6B6B8A;">Fleet Status</span>
+      </header>
+      <div style="padding:24px;display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+
+        <div style="background:#0F0F1A;border:1px solid #1E1E32;border-radius:6px;padding:16px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:700;letter-spacing:0.04em;">WT-01</span>
+            <span style="display:inline-flex;align-items:center;gap:7px;padding:4px 10px;border-radius:2px;background:#161625;border:1px solid #1E1E32;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:0.05em;"><span style="width:7px;height:7px;border-radius:50%;background:#00D4B1;"></span>PATROLLING</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:11px;text-transform:uppercase;letter-spacing:0.04em;color:#6B6B8A;margin-bottom:6px;"><span>Battery</span><span style="font-family:'JetBrains Mono',monospace;color:#00D4B1;">87%</span></div>
+          <div style="height:4px;background:#050509;border-radius:2px;overflow:hidden;"><div style="width:87%;height:100%;background:#00D4B1;"></div></div>
+          <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#3A3A55;margin:12px 0 0;">40.63167, -74.20806</p>
+        </div>
+
+        <div style="background:#0F0F1A;border:1px solid #1E1E32;border-radius:6px;padding:16px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:700;letter-spacing:0.04em;">WT-02</span>
+            <span style="display:inline-flex;align-items:center;gap:7px;padding:4px 10px;border-radius:2px;background:#161625;border:1px solid #1E1E32;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:0.05em;"><span style="width:7px;height:7px;border-radius:50%;background:#8FA0C0;"></span>READY</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:11px;text-transform:uppercase;letter-spacing:0.04em;color:#6B6B8A;margin-bottom:6px;"><span>Battery</span><span style="font-family:'JetBrains Mono',monospace;color:#00D4B1;">93%</span></div>
+          <div style="height:4px;background:#050509;border-radius:2px;overflow:hidden;"><div style="width:93%;height:100%;background:#00D4B1;"></div></div>
+          <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#3A3A55;margin:12px 0 0;">40.63140, -74.20770</p>
+        </div>
+
+        <div style="background:#0F0F1A;border:1px solid #1E1E32;border-radius:6px;padding:16px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:700;letter-spacing:0.04em;">WT-03</span>
+            <span style="display:inline-flex;align-items:center;gap:7px;padding:4px 10px;border-radius:2px;background:#161625;border:1px solid #1E1E32;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:0.05em;"><span style="width:7px;height:7px;border-radius:50%;background:#F5A623;"></span>CHARGING</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:11px;text-transform:uppercase;letter-spacing:0.04em;color:#6B6B8A;margin-bottom:6px;"><span>Battery</span><span style="font-family:'JetBrains Mono',monospace;color:#F5A623;">42%</span></div>
+          <div style="height:4px;background:#050509;border-radius:2px;overflow:hidden;"><div style="width:42%;height:100%;background:#F5A623;"></div></div>
+          <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#3A3A55;margin:12px 0 0;">40.63102, -74.20791</p>
+        </div>
+
+        <div style="background:#0F0F1A;border:1px solid #1E1E32;border-radius:6px;padding:16px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:700;letter-spacing:0.04em;">WT-04</span>
+            <span style="display:inline-flex;align-items:center;gap:7px;padding:4px 10px;border-radius:2px;background:#161625;border:1px solid #1E1E32;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:0.05em;"><span style="width:7px;height:7px;border-radius:50%;background:#6B6B8A;"></span>MAINTENANCE</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:11px;text-transform:uppercase;letter-spacing:0.04em;color:#6B6B8A;margin-bottom:6px;"><span>Battery</span><span style="font-family:'JetBrains Mono',monospace;color:#FF2020;">8%</span></div>
+          <div style="height:4px;background:#050509;border-radius:2px;overflow:hidden;"><div style="width:8%;height:100%;background:#FF2020;"></div></div>
+          <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#3A3A55;margin:12px 0 0;">40.63120, -74.20760</p>
+        </div>
+
+      </div>
+    </section>
+
+    <div style="display:flex;flex-direction:column;gap:20px;">
+      <section style="background:#0F0F1A;border:1px solid #1E1E32;border-radius:6px;">
+        <header style="display:flex;align-items:center;justify-content:space-between;padding:16px 24px;border-bottom:1px solid #1E1E32;">
+          <span style="font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#6B6B8A;">Live Alerts</span>
+        </header>
+        <div style="padding:24px;display:flex;flex-direction:column;gap:10px;">
+          <div style="padding:10px 14px;border-radius:4px;border:1px solid #1E1E32;border-left:3px solid var(--tg-accent);background:#161625;">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px;"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.05em;">{{ alertType }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#3A3A55;">03:17:42Z</span></div>
+            <p style="font-size:13px;color:#6B6B8A;margin:0;line-height:1.45;">{{ alertMessage }}</p>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--tg-accent);margin-top:6px;display:inline-block;letter-spacing:0.04em;">SRC · WT-01</span>
+          </div>
+          <div style="padding:10px 14px;border-radius:4px;border:1px solid #1E1E32;border-left:3px solid #6B6B8A;opacity:0.55;">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px;"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.05em;">SWEEP_COMPLETE</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#3A3A55;">03:11:08Z</span></div>
+            <p style="font-size:13px;color:#6B6B8A;margin:0;line-height:1.45;">Sweep Alpha complete — sector nominal.</p>
+          </div>
+        </div>
+      </section>
+
+      <section style="background:#0F0F1A;border:1px solid #1E1E32;border-radius:6px;">
+        <header style="display:flex;align-items:center;justify-content:space-between;padding:16px 24px;border-bottom:1px solid #1E1E32;">
+          <span style="font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#6B6B8A;">Nest · Rotation</span>
+        </header>
+        <div style="padding:24px;display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-family:'JetBrains Mono',monospace;font-size:13px;">WT-01</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#00D4B1;">PATROLLING</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-family:'JetBrains Mono',monospace;font-size:13px;">WT-02</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8FA0C0;">READY</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-family:'JetBrains Mono',monospace;font-size:13px;">WT-03</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#F5A623;">CHARGING</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-family:'JetBrains Mono',monospace;font-size:13px;">WT-04</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6B6B8A;">MAINTENANCE</span></div>
+        </div>
+      </section>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900},&quot;threat&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;clear&quot;,&quot;elevated&quot;,&quot;active&quot;,&quot;lockdown&quot;],&quot;default&quot;:&quot;clear&quot;,&quot;tsType&quot;:&quot;'clear' | 'elevated' | 'active' | 'lockdown'&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const threat = this.props.threat ?? 'clear';
+    const byState = {
+      clear:    { label: 'CLEAR',    nest: 'SECURED',  mission: 'PERIMETER SWEEP ALPHA',  type: 'SYSTEM',           msg: 'All sectors nominal. Fleet rotation on schedule.' },
+      elevated: { label: 'ELEVATED', nest: 'WATCH',    mission: 'INVESTIGATE · EAST GATE', type: 'MOTION_DETECTED',  msg: 'Movement detected near East Gate perimeter.' },
+      active:   { label: 'ACTIVE',   nest: 'ENGAGING', mission: 'TRACK · 2 SUBJECTS',      type: 'INTRUSION',        msg: 'Two subjects inside fence line. WT-02 launched to track.' },
+      lockdown: { label: 'LOCKDOWN', nest: 'BREACH',   mission: 'CONTAIN · DISPATCH GUARD', type: 'PERIMETER_BREACH', msg: 'Confirmed breach — East Gate. Guard dispatch requested.' },
+    };
+    const s = byState[threat] || byState.clear;
+    return {
+      threat,
+      threatLabel: s.label,
+      nestStatus: s.nest,
+      mission: s.mission,
+      alertType: s.type,
+      alertMessage: s.msg,
+    };
+  }
+}
+</script>
+</body>
+</html>

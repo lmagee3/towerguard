@@ -1,0 +1,63 @@
+/* ───────────────────────────────────────────────────────────────────────────
+   TowerGuard — Base layer
+   Body reset + a few primitives. Tokens live in tokens/*.css.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--tg-bg-deep);
+  color: var(--tg-text-primary);
+  font-family: var(--tg-font-sans);
+  font-size: var(--tg-size-body);
+  line-height: var(--tg-leading-body);
+  font-weight: var(--tg-weight-regular);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--tg-accent-fill);
+  color: var(--tg-text-primary);
+}
+
+/* All numeric / telemetry text uses mono + tabular figures so columns of
+   battery %, coordinates and timestamps stay aligned as they tick. */
+.tg-mono {
+  font-family: var(--tg-font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--tg-tracking-mono);
+}
+
+/* UPPERCASE spaced section label — the recurring structural device. */
+.tg-label {
+  font-family: var(--tg-font-sans);
+  font-size: var(--tg-size-label);
+  font-weight: var(--tg-weight-semi);
+  letter-spacing: var(--tg-tracking-label);
+  text-transform: uppercase;
+  color: var(--tg-text-secondary);
+}
+
+/* HUD-style spaced mono caps (feed overlays, status strips). */
+.tg-hud {
+  font-family: var(--tg-font-mono);
+  font-size: var(--tg-size-micro);
+  letter-spacing: var(--tg-tracking-wide);
+  text-transform: uppercase;
+  color: var(--tg-text-secondary);
+}
+
+a { color: var(--tg-accent); text-decoration: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

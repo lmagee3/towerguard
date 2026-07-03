@@ -1,0 +1,24 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Fleet Status" subtitle="Operational drone states — distinct from threat accents" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 24px; background: var(--tg-bg-surface); }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .pill { display: flex; align-items: center; gap: 8px; border: 1px solid var(--tg-border); border-radius: var(--tg-radius-sm); padding: 10px 14px; background: var(--tg-bg-elevated); }
+  .dot { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+  .t { font-family: var(--tg-font-mono); font-size: 12px; font-weight: 600; letter-spacing: 0.04em; color: var(--tg-text-primary); }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="pill"><span class="dot" style="background: var(--tg-status-patrol)"></span><span class="t">PATROLLING</span></div>
+    <div class="pill"><span class="dot" style="background: var(--tg-status-ready)"></span><span class="t">READY</span></div>
+    <div class="pill"><span class="dot" style="background: var(--tg-status-charge)"></span><span class="t">CHARGING</span></div>
+    <div class="pill"><span class="dot" style="background: var(--tg-status-rtn)"></span><span class="t">RTN</span></div>
+    <div class="pill"><span class="dot" style="background: var(--tg-status-maint)"></span><span class="t">MAINTENANCE</span></div>
+  </div>
+</body>
+</html>

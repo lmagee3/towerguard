@@ -1,0 +1,43 @@
+<!-- @dsCard group="Brand" viewport="700x210" name="Threat-State Propagation" subtitle="The UI mirrors the threat. One accent flips the entire interface" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 24px; background: var(--tg-bg-deep); }
+  .row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .cell { border: 1px solid var(--tg-accent-line); background: var(--tg-bg-surface); border-radius: var(--tg-radius-md); padding: 16px; }
+  .top { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--tg-accent); }
+  .st { font-family: var(--tg-font-mono); font-size: 12px; font-weight: 700; letter-spacing: 0.06em; color: var(--tg-accent); }
+  .bar { height: 4px; border-radius: 2px; background: var(--tg-accent-fill); overflow: hidden; }
+  .fill { height: 100%; width: 64%; background: var(--tg-accent); }
+  .meta { font-family: var(--tg-font-mono); font-size: 10px; color: var(--tg-text-secondary); margin-top: 10px; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="cell" data-threat="clear">
+      <div class="top"><span class="dot"></span><span class="st">CLEAR</span></div>
+      <div class="bar"><div class="fill"></div></div>
+      <div class="meta">4 DRONES · NOMINAL</div>
+    </div>
+    <div class="cell" data-threat="elevated">
+      <div class="top"><span class="dot"></span><span class="st">ELEVATED</span></div>
+      <div class="bar"><div class="fill"></div></div>
+      <div class="meta">MOTION · EAST GATE</div>
+    </div>
+    <div class="cell" data-threat="active">
+      <div class="top"><span class="dot"></span><span class="st">ACTIVE</span></div>
+      <div class="bar"><div class="fill"></div></div>
+      <div class="meta">INTRUSION · ENGAGING</div>
+    </div>
+    <div class="cell" data-threat="lockdown">
+      <div class="top"><span class="dot"></span><span class="st">LOCKDOWN</span></div>
+      <div class="bar"><div class="fill"></div></div>
+      <div class="meta">PERIMETER BREACH</div>
+    </div>
+  </div>
+</body>
+</html>

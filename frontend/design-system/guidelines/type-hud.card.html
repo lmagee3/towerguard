@@ -1,0 +1,28 @@
+<!-- @dsCard group="Type" viewport="700x130" name="HUD Caps" subtitle="Spaced mono caps for feed overlays + status strips" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 24px; background: var(--tg-bg-inset); }
+  .strip { display: flex; justify-content: space-between; align-items: center; }
+  .left, .right { display: flex; flex-direction: column; gap: 6px; }
+  .right { text-align: right; }
+  .big { font-family: var(--tg-font-mono); font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--tg-text-primary); }
+  .rec { color: var(--tg-active); }
+</style>
+</head>
+<body>
+  <div class="strip">
+    <div class="left">
+      <span class="big">UAV-01 · 145FT AGL</span>
+      <span class="tg-hud">GPS 40°37'51"N 74°12'29"W</span>
+    </div>
+    <div class="right">
+      <span class="big rec">● REC</span>
+      <span class="tg-hud">SENSORS IR / LOW-LIGHT · ZOOM 2.8X</span>
+    </div>
+  </div>
+</body>
+</html>

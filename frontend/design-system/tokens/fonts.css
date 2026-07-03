@@ -1,0 +1,5 @@
+/* TowerGuard typefaces — Inter (narrative/UI) + JetBrains Mono (all live data).
+   Both are the real brand fonts (open-source). Loaded from Google Fonts so the
+   @font-face rules ship with the system. Consumers may also self-host the woff2. */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400..800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');

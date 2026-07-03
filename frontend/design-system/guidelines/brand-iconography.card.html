@@ -1,0 +1,31 @@
+<!-- @dsCard group="Brand" viewport="700x170" name="Iconography — Lucide" subtitle="Thin 1.5px line icons. Substitute: brand ships none. Monochrome, accent on active" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<style>
+  body { padding: 24px; background: var(--tg-bg-surface); }
+  .row { display: flex; gap: 14px; flex-wrap: wrap; }
+  .ic { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 78px; }
+  .box { width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--tg-border); border-radius: var(--tg-radius-sm); background: var(--tg-bg-elevated); }
+  [data-lucide] { width: 22px; height: 22px; stroke: var(--tg-text-primary); stroke-width: 1.5; }
+  .ic.on [data-lucide] { stroke: var(--tg-accent); }
+  .n { font-family: var(--tg-font-mono); font-size: 10px; color: var(--tg-text-secondary); }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="ic on"><div class="box"><i data-lucide="shield"></i></div><span class="n">shield</span></div>
+    <div class="ic"><div class="box"><i data-lucide="radar"></i></div><span class="n">radar</span></div>
+    <div class="ic"><div class="box"><i data-lucide="plane"></i></div><span class="n">drone</span></div>
+    <div class="ic"><div class="box"><i data-lucide="battery-medium"></i></div><span class="n">battery</span></div>
+    <div class="ic"><div class="box"><i data-lucide="triangle-alert"></i></div><span class="n">alert</span></div>
+    <div class="ic"><div class="box"><i data-lucide="video"></i></div><span class="n">feed</span></div>
+    <div class="ic"><div class="box"><i data-lucide="navigation"></i></div><span class="n">heading</span></div>
+    <div class="ic"><div class="box"><i data-lucide="map-pin"></i></div><span class="n">gps</span></div>
+  </div>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

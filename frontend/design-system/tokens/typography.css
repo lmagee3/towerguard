@@ -1,0 +1,41 @@
+/* ───────────────────────────────────────────────────────────────────────────
+   TowerGuard — Typography
+   Inter for headings + narrative. JetBrains Mono for ALL live data:
+   battery %, GPS, timestamps, drone IDs, coordinates, telemetry. The mix IS
+   the identity — never set a number that updates in Inter.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* ── Families ───────────────────────────────────────────────── */
+  --tg-font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --tg-font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* ── Type scale (px) — technical, compact ───────────────────── */
+  --tg-size-display: 40px; /* hero / big threat state */
+  --tg-size-h1:      28px;
+  --tg-size-h2:      20px;
+  --tg-size-h3:      16px;
+  --tg-size-body:    14px; /* default UI text */
+  --tg-size-sm:      13px;
+  --tg-size-label:   12px; /* section labels, captions */
+  --tg-size-micro:   11px; /* mono metadata, ticks */
+
+  /* ── Weights ────────────────────────────────────────────────── */
+  --tg-weight-regular: 400;
+  --tg-weight-medium:  500;
+  --tg-weight-semi:    600;
+  --tg-weight-bold:    700;
+
+  /* ── Line heights ───────────────────────────────────────────── */
+  --tg-leading-tight: 1.1;
+  --tg-leading-snug:  1.35;
+  --tg-leading-body:  1.55;
+
+  /* ── Letter-spacing ─────────────────────────────────────────── */
+  --tg-tracking-display: -0.02em; /* tighten large Inter */
+  --tg-tracking-tight:   -0.01em;
+  --tg-tracking-normal:   0;
+  --tg-tracking-label:    0.08em; /* UPPERCASE section labels */
+  --tg-tracking-mono:     0.02em; /* mono data, slightly open */
+  --tg-tracking-wide:     0.14em; /* HUD / spaced caps */
+}

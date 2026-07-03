@@ -1,0 +1,46 @@
+<!-- @dsCard group="Components" viewport="700x380" name="Fleet — Drone Card & Alert Feed" subtitle="DroneCard with live controls · AlertRow severity feed" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+  body { padding: 24px; background: var(--tg-bg-deep); }
+  .grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 18px; }
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .feed { display: flex; flex-direction: column; gap: 10px; }
+  .gl { margin-bottom: 12px; }
+</style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { DroneCard, AlertRow } = window.DesignSystem_91a397;
+    function Demo() {
+      return (
+        <div className="grid" data-threat="elevated">
+          <div>
+            <div className="gl tg-label">Fleet</div>
+            <div className="cards">
+              <DroneCard drone={{ id: 'WT-01', status: 'PATROLLING', battery_pct: 87, position: { lat: 40.63167, lng: -74.20806 } }} />
+              <DroneCard drone={{ id: 'WT-03', status: 'CHARGING', battery_pct: 42, position: { lat: 40.63102, lng: -74.20791 } }} />
+            </div>
+          </div>
+          <div>
+            <div className="gl tg-label">Live Alerts</div>
+            <div className="feed">
+              <AlertRow alert={{ type: 'MOTION_DETECTED', severity: 'HIGH', message: 'Movement detected near East Gate', time: '03:17:42Z', source_drone: 'WT-01' }} />
+              <AlertRow alert={{ type: 'PERIMETER_OK', severity: 'LOW', message: 'Sweep Alpha complete — sector nominal', time: '03:11:08Z', source_drone: 'WT-02', acknowledged: true }} />
+            </div>
+          </div>
+        </div>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+  </script>
+</body>
+</html>

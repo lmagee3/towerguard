@@ -1,0 +1,23 @@
+<!-- @dsCard group="Colors" viewport="700x170" name="Backgrounds" subtitle="Three depths + inset well — depth comes from layering, never shadow" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 24px; }
+  .row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .sw { border: 1px solid var(--tg-border); border-radius: var(--tg-radius-md); padding: 16px; height: 118px; display: flex; flex-direction: column; justify-content: flex-end; }
+  .n { font-family: var(--tg-font-sans); font-size: 13px; font-weight: 600; color: var(--tg-text-primary); }
+  .h { font-family: var(--tg-font-mono); font-size: 11px; color: var(--tg-text-secondary); letter-spacing: 0.02em; margin-top: 2px; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="sw" style="background: var(--tg-bg-deep)"><span class="n">Deep</span><span class="h">#080810</span></div>
+    <div class="sw" style="background: var(--tg-bg-surface)"><span class="n">Surface</span><span class="h">#0F0F1A</span></div>
+    <div class="sw" style="background: var(--tg-bg-elevated)"><span class="n">Elevated</span><span class="h">#161625</span></div>
+    <div class="sw" style="background: var(--tg-bg-inset)"><span class="n">Inset</span><span class="h">#050509</span></div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+/* ───────────────────────────────────────────────────────────────────────────
+   TowerGuard — Spacing, Radii, Borders, Motion
+   4px base grid. Panels carry a 24px minimum interior padding.
+   Corners are small and technical. No drop shadows — depth comes from the
+   three background layers + hairline borders only.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* ── Spacing scale (4px base) ───────────────────────────────── */
+  --tg-space-1:  4px;
+  --tg-space-2:  8px;
+  --tg-space-3:  12px;
+  --tg-space-4:  16px;
+  --tg-space-5:  20px;
+  --tg-space-6:  24px;  /* panel minimum padding */
+  --tg-space-8:  32px;
+  --tg-space-10: 40px;
+  --tg-space-12: 48px;
+  --tg-space-16: 64px;
+
+  --tg-panel-pad: 24px; /* enforce: never pad a panel below this */
+
+  /* ── Radii — sharp, technical ───────────────────────────────── */
+  --tg-radius-none: 0px;
+  --tg-radius-xs:   2px;  /* badges, tags, bars */
+  --tg-radius-sm:   4px;  /* buttons, inputs, chips */
+  --tg-radius-md:   6px;  /* cards, panels */
+  --tg-radius-lg:   8px;  /* modals, large surfaces */
+  --tg-radius-pill: 999px;
+
+  /* ── Borders ────────────────────────────────────────────────── */
+  --tg-border-width: 1px;
+
+  /* ── Motion — purposeful, never decorative. No looping anims. ── */
+  --tg-ease:          cubic-bezier(0.2, 0, 0, 1); /* @kind other */
+  --tg-ease-out:      cubic-bezier(0.16, 1, 0.3, 1); /* @kind other */
+  --tg-dur-fast:      120ms; /* @kind other */
+  --tg-dur-base:      200ms; /* @kind other */
+  --tg-dur-slow:      320ms; /* @kind other */
+
+  /* ── Z layers ───────────────────────────────────────────────── */
+  --tg-z-base:    0;  /* @kind other */
+  --tg-z-sticky:  10; /* @kind other */
+  --tg-z-overlay: 40; /* @kind other */
+  --tg-z-modal:   50; /* @kind other */
+  --tg-z-toast:   60; /* @kind other */
+}
