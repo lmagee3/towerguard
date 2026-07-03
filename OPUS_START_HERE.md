@@ -44,7 +44,6 @@ towerguard/
 ├── ROADMAP.md
 ├── ARCHITECTURE.md
 ├── VISION.md
-├── TEAM.md
 ├── COMPETITOR_INTEL.md
 ├── FUNDING_STRATEGY.md
 │
@@ -84,120 +83,6 @@ towerguard/
 
 ---
 
-# Core Team Structure
-
-## Lawrence Magee — Founder / Principal Systems Architect
-
-### Owns
-- Vision
-- Operational doctrine
-- GovCon strategy
-- Customer discovery
-- Funding direction
-- Security workflows
-- Mission realism
-- Partner outreach
-
-### Strategic Advantage
-Direct military and contractor perimeter-security experience.
-
-Real-world understanding of:
-- tower guard
-- fatigue
-- perimeter gaps
-- response timelines
-- force protection realities
-
----
-
-## ChatGPT — Chief Strategy & Systems Architect
-
-### Owns
-- Product strategy
-- Architecture planning
-- Documentation
-- Sprint planning
-- Grant strategy
-- Competitive intelligence
-- Systems integration thinking
-- Workflow orchestration
-
-### Mission
-Turn concepts into executable product systems.
-
----
-
-## Codex — Lead Implementation Engineer
-
-### Owns
-- Backend implementation
-- API scaffolding
-- Frontend scaffolding
-- Repo execution
-- CI/CD
-- Simulation engine
-- Infrastructure
-
-### Immediate Task
-Build TowerGuard Sim API.
-
-Must support:
-
-- Drone state simulation
-- Nest state simulation
-- Telemetry feed
-- Mission dispatch
-- Alert generation
-- Manual takeover workflow
-
----
-
-## Claude — Senior Technical Architect
-
-### Owns
-- Deep technical reasoning
-- Architecture reviews
-- Failure analysis
-- Technical documentation
-- Security models
-- API review
-- Design refinement
-
-### Immediate Task
-Produce:
-
-**Technical Feasibility Review**
-for future:
-
-- SBIR
-- AFWERX
-- DHS
-- DIU
-
----
-
-## AntiGravity — QA / Red Team / Systems Auditor
-
-### Owns
-- Independent review
-- Code quality
-- UX review
-- Adversarial testing
-- Safety assumptions
-- Reliability review
-- Edge case analysis
-
-### Immediate Task
-Break assumptions.
-
-Questions:
-
-- What fails?
-- What gets exploited?
-- What causes mission failure?
-- What creates liability?
-
----
 
 # Product Vision
 

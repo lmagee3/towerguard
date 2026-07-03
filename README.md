@@ -97,27 +97,12 @@ Pitch framing: *Autonomous perimeter intelligence for persistent security — co
 
 ---
 
-## Team
-
-| Role | Owner |
-|---|---|
-| Founder / Principal Systems Architect | Lawrence Magee |
-| Chief Strategy & Systems Architect | ChatGPT |
-| Senior Technical Architect | Claude |
-| Lead Implementation Engineer | Codex |
-| QA / Red Team / Systems Auditor | AntiGravity |
-
-See [TEAM.md](TEAM.md) for full role definitions.
-
----
-
 ## Docs
 
 - [VISION.md](VISION.md) — product vision and doctrine
 - [ARCHITECTURE.md](ARCHITECTURE.md) — system architecture
 - [ROADMAP.md](ROADMAP.md) — phase plan and milestones
 - [FUNDING_STRATEGY.md](FUNDING_STRATEGY.md) — grant and GovCon strategy
-- [TEAM.md](TEAM.md) — team roles and division of labor
 - [COMPETITOR_INTEL.md](COMPETITOR_INTEL.md) — competitive landscape
 - [OPUS_START_HERE.md](OPUS_START_HERE.md) — full project brief for AI agents
 
