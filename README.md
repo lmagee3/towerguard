@@ -83,6 +83,8 @@ TowerGuard serves two markets that reinforce each other.
 
 **Commercial (revenue first):** Any person or organization with a perimeter they can't watch continuously. Farms, ranches, construction sites, warehouses, distribution centers, office parks, commercial campuses. Fast sales cycle, no compliance overhead. This is where the first pilots come from.
 
+**Municipal / Law Enforcement (Dynamic Force-Multiplier):** Seamless API integration with existing smart-city infrastructure. For example, when a fixed-point Flock Safety ALPR camera triggers a hotlist hit, TowerGuard automatically launches a drone to acquire and dynamically track the target vehicle, bridging the gap between stationary sensors and mobile suspect apprehension.
+
 **Government / GovCon (scale + funding):** Military installations, critical infrastructure, border security, corrections. Slower to close, but non-dilutive funding and enterprise contract values. Commercial pilot data is what makes these conversations credible.
 
 ### Non-Dilutive Funding Targets
