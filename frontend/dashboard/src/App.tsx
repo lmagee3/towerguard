@@ -155,7 +155,7 @@ export default function App() {
             alignItems: 'center',
             gap: '10px',
           }}>
-            <span style={{ color: '#3b82f6', fontSize: '20px' }}>◆</span>
+            <span style={{ color: '#3b82f6', fontSize: '24px' }}>♜</span>
             TOWERGUARD
           </h1>
           <p style={{ fontSize: '13px', color: '#64748b', margin: '4px 0 0' }}>
@@ -415,11 +415,52 @@ export default function App() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: '#334155',
-              fontSize: 14,
-              fontFamily: "'JetBrains Mono', monospace",
+              position: 'relative',
+              overflow: 'hidden'
             }}>
-              [ FEED — {activeVideo} — SIMULATED ]
+              <div style={{
+                position: 'absolute', inset: 0,
+                backgroundImage: 'url(/drone_feed.jpg)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                opacity: 0.85
+              }} />
+              
+              {/* Static Overlay */}
+              <div style={{
+                position: 'absolute', inset: 0,
+                background: 'repeating-radial-gradient(#000 0 0.0001%,#ffffff 0 0.0002%) 50% 0/2500px 2500px, repeating-conic-gradient(#000 0 0.0001%,#ffffff 0 0.0002%) 50% 50%/2500px 2500px',
+                backgroundBlendMode: 'difference',
+                opacity: 0.06,
+                animation: 'static 0.2s infinite alternate',
+                pointerEvents: 'none'
+              }} />
+
+              {/* REC Indicator */}
+              <div style={{
+                position: 'absolute', top: 20, right: 24,
+                display: 'flex', alignItems: 'center', gap: 8,
+                backgroundColor: 'rgba(0,0,0,0.5)',
+                padding: '4px 10px', borderRadius: 4,
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: 12, color: '#fff', fontWeight: 600
+              }}>
+                <div style={{ width: 10, height: 10, borderRadius: '50%', backgroundColor: '#ef4444', animation: 'pulse 2s infinite' }} />
+                REC
+              </div>
+
+              <div style={{
+                position: 'absolute',
+                bottom: 20, left: 24,
+                color: '#fff',
+                textShadow: '0 1px 2px rgba(0,0,0,0.8)',
+                fontSize: 14,
+                fontFamily: "'JetBrains Mono', monospace",
+                backgroundColor: 'rgba(0,0,0,0.5)',
+                padding: '4px 8px', borderRadius: 4
+              }}>
+                [ FEED — {activeVideo} — SIMULATED ]
+              </div>
             </div>
           </div>
         </div>
@@ -429,6 +470,19 @@ export default function App() {
         @keyframes pulse {
           0%, 100% { opacity: 0.4; transform: translateX(-10px); }
           50% { opacity: 1; transform: translateX(30px); }
+        }
+        @keyframes static {
+          0% { background-position: 0% 0%; }
+          10% { background-position: 5% 10%; }
+          20% { background-position: -5% 5%; }
+          30% { background-position: 10% -10%; }
+          40% { background-position: -10% 20%; }
+          50% { background-position: 15% -5%; }
+          60% { background-position: -15% 15%; }
+          70% { background-position: 5% -15%; }
+          80% { background-position: -5% 25%; }
+          90% { background-position: 10% -20%; }
+          100% { background-position: -10% 10%; }
         }
       `}</style>
     </div>
