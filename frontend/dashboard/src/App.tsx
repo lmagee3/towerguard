@@ -56,6 +56,7 @@ export default function App() {
   const [connected, setConnected] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
+  const [activeTakeover, setActiveTakeover] = useState<string | null>(null);
   const reconnectTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // ── WebSocket with auto-reconnect ──────────────────────────────────────
@@ -118,6 +119,7 @@ export default function App() {
   // ── Actions ────────────────────────────────────────────────────────────
 
   async function takeover(id: string) {
+    setActiveTakeover(id);
     await fetch(`${API}/drones/${id}/takeover`, { method: 'POST' }).catch(() => {});
   }
 
@@ -315,12 +317,19 @@ export default function App() {
                           backgroundColor: '#2563eb', color: '#ffffff',
                           border: 'none', fontSize: 12, fontWeight: 500, cursor: 'pointer',
                         }}>TAKEOVER</button>
-                        {drone.status !== 'RTN' && (
+                        {drone.status !== 'RTN' ? (
                           <button onClick={() => returnToNest(drone.id)} style={{
                             flex: 1, padding: '8px 0', borderRadius: 6,
                             backgroundColor: '#334155', color: '#e2e8f0',
                             border: 'none', fontSize: 12, fontWeight: 500, cursor: 'pointer',
                           }}>RTN</button>
+                        ) : (
+                          <div style={{
+                            flex: 1, padding: '8px 0', borderRadius: 6,
+                            backgroundColor: 'rgba(245,158,11,0.2)', color: '#fbbf24',
+                            border: '1px solid rgba(245,158,11,0.5)', fontSize: 12, fontWeight: 700,
+                            textAlign: 'center', animation: 'pulse 1.5s infinite'
+                          }}>RETURNING...</div>
                         )}
                       </div>
                     )}
@@ -459,7 +468,100 @@ export default function App() {
                 backgroundColor: 'rgba(0,0,0,0.5)',
                 padding: '4px 8px', borderRadius: 4
               }}>
-                [ FEED — {activeVideo} — SIMULATED ]
+                [ FEED — {activeVideo} — {nest?.drones.find(d => d.id === activeVideo)?.status === 'RTN' ? 'RETURNING TO NEST' : 'SIMULATED'} ]
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Takeover modal */}
+      {activeTakeover && (
+        <div
+          onClick={() => setActiveTakeover(null)}
+          style={{
+            position: 'fixed', inset: 0, zIndex: 60,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            backgroundColor: 'rgba(220,38,38,0.15)',
+            backdropFilter: 'blur(8px)',
+            padding: 24,
+          }}
+        >
+          <div onClick={(e) => e.stopPropagation()} style={{
+            backgroundColor: '#0f172a',
+            border: '2px solid #ef4444',
+            boxShadow: '0 0 40px rgba(239,68,68,0.4)',
+            borderRadius: 12,
+            overflow: 'hidden',
+            maxWidth: 1000,
+            width: '100%',
+          }}>
+            <div style={{
+              display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+              backgroundColor: '#7f1d1d', padding: '12px 20px',
+              borderBottom: '2px solid #ef4444',
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                <div style={{ width: 12, height: 12, borderRadius: '50%', backgroundColor: '#fca5a5', animation: 'pulse 1s infinite' }} />
+                <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 16, fontWeight: 800, letterSpacing: '0.15em', color: '#ffffff' }}>
+                  MANUAL CONTROL OVERRIDE : {activeTakeover}
+                </span>
+              </div>
+              <button onClick={() => setActiveTakeover(null)} style={{
+                background: 'none', border: 'none', color: '#fca5a5', cursor: 'pointer', fontSize: 24, fontWeight: 'bold'
+              }}>✕</button>
+            </div>
+            <div style={{
+              aspectRatio: '16/9',
+              backgroundColor: '#000',
+              display: 'flex',
+              position: 'relative',
+              overflow: 'hidden'
+            }}>
+              <div style={{
+                position: 'absolute', inset: 0,
+                backgroundImage: 'url(/drone_feed.jpg)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                opacity: 0.9,
+                filter: 'sepia(1) hue-rotate(-50deg) saturate(3) brightness(0.8)' // Turns the green thermal red
+              }} />
+              
+              {/* Static Overlay */}
+              <div style={{
+                position: 'absolute', inset: 0,
+                background: 'repeating-radial-gradient(#000 0 0.0001%,#ffffff 0 0.0002%) 50% 0/2500px 2500px, repeating-conic-gradient(#000 0 0.0001%,#ffffff 0 0.0002%) 50% 50%/2500px 2500px',
+                backgroundBlendMode: 'difference',
+                opacity: 0.08,
+                animation: 'static 0.15s infinite alternate',
+                pointerEvents: 'none'
+              }} />
+
+              {/* HUD Elements */}
+              <div style={{ position: 'absolute', inset: 30, border: '2px solid rgba(239,68,68,0.5)', pointerEvents: 'none' }} />
+              <div style={{ position: 'absolute', top: '50%', left: '50%', width: 60, height: 60, border: '2px solid #ef4444', borderRadius: '50%', transform: 'translate(-50%, -50%)', pointerEvents: 'none' }} />
+              <div style={{ position: 'absolute', top: '50%', left: '50%', width: 20, height: 2, backgroundColor: '#ef4444', transform: 'translate(-50%, -50%)', pointerEvents: 'none' }} />
+              <div style={{ position: 'absolute', top: '50%', left: '50%', width: 2, height: 20, backgroundColor: '#ef4444', transform: 'translate(-50%, -50%)', pointerEvents: 'none' }} />
+
+              <div style={{ position: 'absolute', bottom: 40, right: 40, color: '#fca5a5', fontFamily: "'JetBrains Mono', monospace", fontSize: 14, textAlign: 'right' }}>
+                <div>THROTTLE: <span style={{ animation: 'flicker 2s infinite' }}>[=====   ]</span></div>
+                <div>YAW: <span style={{ animation: 'flicker 1.5s infinite' }}>[   |    ]</span></div>
+                <div>PITCH: <span style={{ animation: 'flicker 1.8s infinite' }}>[   |    ]</span></div>
+                <div style={{ marginTop: 10, color: '#ef4444', fontWeight: 'bold' }}>MAVLINK CONNECTED</div>
+              </div>
+
+              <div style={{
+                position: 'absolute',
+                bottom: 40, left: 40,
+                color: '#fff',
+                fontSize: 18,
+                fontFamily: "'JetBrains Mono', monospace",
+                backgroundColor: 'rgba(239,68,68,0.8)',
+                padding: '6px 12px', borderRadius: 4,
+                fontWeight: 'bold',
+                animation: 'pulse 1s infinite'
+              }}>
+                [ OPERATOR TAKEOVER ACTIVE ]
               </div>
             </div>
           </div>
@@ -468,8 +570,12 @@ export default function App() {
 
       <style>{`
         @keyframes pulse {
-          0%, 100% { opacity: 0.4; transform: translateX(-10px); }
-          50% { opacity: 1; transform: translateX(30px); }
+          0%, 100% { opacity: 0.4; transform: scale(0.98); }
+          50% { opacity: 1; transform: scale(1); }
+        }
+        @keyframes flicker {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.7; }
         }
         @keyframes static {
           0% { background-position: 0% 0%; }
